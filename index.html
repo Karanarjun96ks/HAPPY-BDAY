@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Little Princess 🎂</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    .font-pacifico { font-family: 'Pacifico', cursive; }
+    .font-comic { font-family: 'Comic Neue', cursive; }
+
+    /* Cake styles */
+    .cake {
+      position: relative;
+      width: 200px;
+      height: 220px;
+      margin: 0 auto;
+    }
+
+    .plate {
+      width: 220px;
+      height: 30px;
+      background: #f5f5f5;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 0;
+      left: -10px;
+      box-shadow: 0 2px 0 rgba(0,0,0,0.1);
+    }
+
+    .cake-bottom {
+      width: 180px;
+      height: 60px;
+      background: #f9c5d1;
+      border-radius: 10px;
+      position: absolute;
+      bottom: 30px;
+      left: 10px;
+    }
+
+    .cake-top {
+      width: 200px;
+      height: 50px;
+      background: #f9a8d4;
+      border-radius: 50% 50% 0 0;
+      position: absolute;
+      bottom: 90px;
+      overflow: hidden;
+    }
+
+    .candle {
+      width: 10px;
+      height: 40px;
+      background: #fff;
+      position: absolute;
+      bottom: 140px;
+      left: 95px;
+      border-radius: 5px;
+    }
+
+    .flame {
+      width: 15px;
+      height: 25px;
+      background: #ffde7d;
+      border-radius: 50% 50% 20% 20%;
+      position: absolute;
+      bottom: 180px;
+      left: 92.5px;
+      box-shadow: 0 0 10px #ffde7d, 0 0 20px #ffde7d;
+      animation: flicker 0.5s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+    .blown {
+      animation: blow 0.5s forwards;
+    }
+
+    @keyframes blow {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(0); opacity: 0; }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: red;
+      opacity: 0;
+      animation: confetti-fall 2s linear forwards;
+    }
+
+    @keyframes confetti-fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(400px) rotate(720deg); opacity: 0; }
+    }
+
+    /* Sparkle animation */
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: radial-gradient(circle, #fff 40%, transparent 70%);
+      border-radius: 50%;
+      animation: sparkle 1s infinite;
+      opacity: 0;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.5); opacity: 1; }
+    }
+
+    /* Cake cut animation */
+    @keyframes cutCake {
+      0% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.02) rotate(1deg); }
+      50% { transform: scale(1.03) rotate(-1deg); }
+      75% { transform: scale(1.02) rotate(0deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+
+    .cut {
+      animation: cutCake 1s ease-in-out;
+    }
+  </style>
+</head>
+
+<body class="bg-pink-50 min-h-screen">
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-pink-400 to-purple-400 py-6 shadow-lg">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-6xl font-bold text-white font-pacifico">Happy Birthday!</h1>
+      <h2 class="text-2xl md:text-4xl text-white mt-2 font-comic">Momo 👑</h2>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8">
+    <!-- Message -->
+    <section class="bg-white rounded-xl shadow-md p-6 mb-8 text-center max-w-3xl mx-auto">
+      <div class="text-5xl mb-4">🎂🎉🎁</div>
+      <h3 class="text-2xl md:text-3xl font-bold text-pink-600 mb-4">To The Beautiful Princess</h3>
+      <p class="text-lg text-gray-700 mb-6">
+        May your birthday be filled with joy, laughter, and all the love in the world! 
+        You're our shining star ✨ and we wish you endless happiness as you grow.
+      </p>
+      <div class="text-4xl">🎈👶🍼🐻‍❄</div>
+    </section>
+
+    <!-- Cake -->
+    <section class="text-center mb-12">
+      <h3 class="text-2xl font-bold text-purple-600 mb-6">Let's Cut the Cake!</h3>
+
+      <div id="cake-container" class="relative mx-auto w-64 h-64">
+        <div class="cake">
+          <div class="plate"></div>
+          <div class="cake-bottom"></div>
+          <div class="cake-top"></div>
+          <div class="candle"></div>
+          <div class="flame"></div>
+        </div>
+      </div>
+
+      <div class="space-x-4">
+        <button onclick="blowCandles()" class="mt-6 bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all transform hover:scale-105">
+          Blow Candles 🎂
+        </button>
+        <button onclick="cutCake()" class="mt-6 bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all transform hover:scale-105">
+          Cut Cake 🍰
+        </button>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="mb-12">
+      <h3 class="text-2xl font-bold text-center text-purple-600 mb-6">Princess Moments 👑</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <img src="k1.jpeg" class="rounded-lg shadow-md hover:shadow-xl transition-shadow">
+        <img src="k2.jpeg" class="rounded-lg shadow-md hover:shadow-xl transition-shadow">
+        <img src="k3.jpeg" class="rounded-lg shadow-md hover:shadow-xl transition-shadow">
+        <img src="k4.jpeg" class="rounded-lg shadow-md hover:shadow-xl transition-shadow">
+        <img src="k5.jpeg" class="rounded-lg shadow-md hover:shadow-xl transition-shadow">
+        <img src="k6.jpeg" class="rounded-lg shadow-md hover:shadow-xl transition-shadow">
+        <img src="k7.jpeg" class="rounded-lg shadow-md hover:shadow-xl transition-shadow">
+        <video loop muted autoplay="autoplay">
+          <source src="k8.mp4">
+        </video>
+      </div>
+    </section>
+
+    <!-- Wishes -->
+    <section class="bg-gradient-to-r from-purple-100 to-pink-100 rounded-xl p-6 max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold text-center text-pink-600 mb-6">Birthday Wishes 💝</h3>
+      <div class="space-y-4">
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+          <p class="text-gray-700">"May your life be as sweet as cake and as bright as candles!" ✨</p>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+          <p class="text-gray-700">"Wishing you a year full of giggles, cuddles, and magical moments!" 🧚‍♀</p>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+          <p class="text-gray-700">"You're the most precious gift we could ask for!" 🎁💖</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-pink-400 text-white py-6 text-center">
+    <p class="text-lg">Made with ❤ & Cear for MOMO </p>
+    <p class="text-sm mt-2">© 1st Birthday Celebrations</p>
+  </footer>
+
+  <script>
+    function blowCandles() {
+      const flame = document.querySelector('.flame');
+      flame.classList.add('blown');
+      setTimeout(() => flame.style.display = 'none', 600);
+    }
+
+    function cutCake() {
+      const cake = document.querySelector('.cake');
+      cake.classList.add('cut');
+
+      // Confetti
+      for (let i = 0; i < 25; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.top = Math.random() * -100 + 'px';
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        confetti.style.animationDuration = 1.5 + Math.random() + 's';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 2000);
+      }
+
+      // Sparkles 🎇
+      const cakeTop = document.querySelector('.cake-top');
+      for (let i = 0; i < 15; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.classList.add('sparkle');
+        sparkle.style.left = Math.random() * 180 + 'px';
+        sparkle.style.top = Math.random() * 50 + 'px';
+        sparkle.style.animationDelay = Math.random() + 's';
+        cakeTop.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 2500);
+      }
+
+      setTimeout(() => cake.classList.remove('cut'), 1200);
+    }
+  </script>
+</body>
+</html>
