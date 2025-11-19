@@ -231,7 +231,7 @@
     function blowCandles() {
       const flame = document.querySelector('.flame');
       flame.classList.add('blown');
-      setTimeout(() => flame.style.display = 'none', 600);
+      setTimeout(() => flame.style.display = 'none', 1000);
     }
 
     function cutCake() {
@@ -247,7 +247,7 @@
         confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
         confetti.style.animationDuration = 1.5 + Math.random() + 's';
         document.body.appendChild(confetti);
-        setTimeout(() => confetti.remove(), 2000);
+        setTimeout(() => confetti.remove(), 7000);
       }
 
       // Sparkles 🎇
@@ -259,12 +259,13 @@
         sparkle.style.top = Math.random() * 50 + 'px';
         sparkle.style.animationDelay = Math.random() + 's';
         cakeTop.appendChild(sparkle);
-        setTimeout(() => sparkle.remove(), 2500);
+        setTimeout(() => sparkle.remove(), 7500);
       }
 
-      setTimeout(() => cake.classList.remove('cut'), 1200);
+      setTimeout(() => cake.classList.remove('cut'), 12000);
     }
   </script>
 </body>
 
 </html>
+
