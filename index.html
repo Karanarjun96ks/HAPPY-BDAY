@@ -239,11 +239,11 @@
       cake.classList.add('cut');
 
       // Confetti
-      for (let i = 0; i < 25; i++) {
+      for (let i = 0; i < 250; i++) {
         const confetti = document.createElement('div');
         confetti.classList.add('confetti');
         confetti.style.left = Math.random() * window.innerWidth + 'px';
-        confetti.style.top = Math.random() * -100 + 'px';
+        confetti.style.top = Math.random() * -1000 + 'px';
         confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
         confetti.style.animationDuration = 1.5 + Math.random() + 's';
         document.body.appendChild(confetti);
@@ -268,4 +268,5 @@
 </body>
 
 </html>
+
 
